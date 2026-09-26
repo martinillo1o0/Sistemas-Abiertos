@@ -15,26 +15,57 @@ function App() {
   const [total, setTotal] = useState(0);
   const [cart, setCart] = useState([])
 
+  //Calcula total
   useEffect(() => {
     let newTotal = 0;
 
     cart.forEach((guitar) => {
-      newTotal += guitar.price;
+      newTotal += guitar.price * guitar.quantity;
     });
 
     setTotal(newTotal);
   }, [cart]);
 
+
+
   function handlerClick(item) {
+    setCart((prevCart) => {
+      const guitarExist = prevCart.find((guitar) => guitar.id === item.id);
 
-    const guitarExist = cart.findIndex((guitar) => guitar.id === item.id)
-    console.log(guitarExist);
+      if (guitarExist) {
+        if (guitarExist.quantity >= 5) return prevCart;
 
-    setCart(prevCart => [...prevCart, item])
-    console.log(cart)
+        return prevCart.map((guitar) =>
+          guitar.id === item.id
+            ? { ...guitar, quantity: guitar.quantity + 1 }
+            : guitar
+        );
+      }
+
+      return [...prevCart, { ...item, quantity: 1 }];
+    });
   }
 
- 
+  function vaciarCarrito() {
+    setCart([]);
+  }
+
+  function eliminarProducto(item) {
+    setCart(prevCart => prevCart.filter(guitar => guitar.id !== item.id));
+  }
+
+  function actualizarCantidad(item, cambio) {
+    setCart((prevCart) =>
+      prevCart
+        .map((guitar) =>
+          guitar.id === item.id
+            ? { ...guitar, quantity: guitar.quantity + cambio }
+            : guitar
+        )
+        .filter((guitar) => guitar.quantity > 0 && guitar.quantity <= 5)
+    );
+  }
+
 
 
 
@@ -74,12 +105,16 @@ data.map(() => {
   
   */
 
-
-
   return (
     //Estructura
     <>
-      <Header cart={cart} total={total} />
+      <Header
+        cart={cart}
+        total={total}
+        vaciarCarrito={vaciarCarrito}
+        eliminarProducto={eliminarProducto}
+        actualizarCantidad={actualizarCantidad}
+      />
 
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
