@@ -2,6 +2,10 @@
 
 export default function Header({cart, decreaseQuantity, increaseQuantity, removeFromCart, clearCart, isEmpty, cartTotal}) 
 {
+
+
+
+  
   
   return (
     <header className="py-5 header">

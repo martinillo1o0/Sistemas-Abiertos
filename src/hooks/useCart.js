@@ -85,9 +85,6 @@ export const useCart = () => {
     function clearCart() {
         setCart([]);
     }
-
-
-
     return {
 
         cart,
