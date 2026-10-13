@@ -30,7 +30,14 @@ La aplicación resuelve estas necesidades mediante una arquitectura basada en Re
 
 ## Capturas de pantalla
 
-![Evidencia del funcionamiento](./assets/Evidencia_Funcionamient.png)
+
+![Evidencia del funcionamiento](./assets/Evidencia_Funcionamiento.png)
+
+- Pantalla principal
+- Carrito de compras
+- Carrito con productos almacenados en LocalStorage
+
+
 Ejemplo:
 
 - Pantalla principal
