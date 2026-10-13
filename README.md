@@ -1,71 +1,67 @@
-
 # GuitarsLA-TS
 
-## Visión General del Proyecto
+> Aplicación web académica de una tienda de guitarras, desarrollada con React y TypeScript.
 
-### Nombre del proyecto
-**GuitarsLA-TS**
+## Índice
 
-### Descripción
-
-GuitarsLA-TS es una aplicación web desarrollada con React y TypeScript que simula una tienda de guitarras. Su principal objetivo es permitir que el usuario visualice un catálogo de productos, agregue guitarras a un carrito de compras, modifique las cantidades de cada artículo y mantenga la información del carrito incluso después de cerrar o actualizar el navegador mediante el uso de **LocalStorage**.
-
-El proyecto fue desarrollado con fines académicos para aplicar conceptos del ecosistema de React, incluyendo Hooks, Componentes, Custom Hooks, manejo de estado y persistencia de datos.
+1. [Visión general](#visión-general)
+   - [Problema que resuelve](#problema-que-resuelve)
+   - [Capturas de pantalla](#capturas-de-pantalla)
+   - [Demo](#demo)
+2. [Ficha técnica](#ficha-técnica)
+   - [Lenguajes y versiones](#lenguajes-y-versiones)
+   - [Nivel de tipado](#nivel-de-tipado)
+   - [Framework, librerías y dependencias](#framework-librerías-y-dependencias)
+   - [Entorno de desarrollo](#entorno-de-desarrollo)
+3. [Arquitectura](#arquitectura)
+   - [Organización general](#organización-general)
+   - [Responsabilidad de cada carpeta](#responsabilidad-de-cada-carpeta)
+4. [Hooks nativos](#hooks-nativos)
+5. [Custom Hook: `useCart`](#custom-hook-usecart)
+   - [Responsabilidades](#responsabilidades)
+   - [Valores que expone](#valores-que-expone)
 
 ---
 
-## Problema que resuelve
+## Visión general
+
+GuitarsLA-TS es una aplicación web desarrollada con React y TypeScript que simula una tienda de guitarras. Permite visualizar un catálogo, agregar guitarras al carrito, modificar sus cantidades y conservar la información incluso después de cerrar o actualizar el navegador mediante **LocalStorage**.
+
+El proyecto fue desarrollado con fines académicos para aplicar conceptos del ecosistema de React, incluyendo Hooks, componentes, Custom Hooks, manejo de estado y persistencia de datos.
+
+### Problema que resuelve
 
 En una tienda en línea es necesario que el usuario pueda:
 
 - Consultar un catálogo de productos.
 - Agregar artículos a un carrito.
-- Modificar cantidades.
-- Eliminar productos.
+- Modificar cantidades y eliminar productos.
 - Mantener el carrito guardado aunque cierre la página.
 
-La aplicación resuelve estas necesidades mediante una arquitectura basada en React y un almacenamiento persistente utilizando LocalStorage.
+La aplicación cubre estas necesidades mediante una arquitectura basada en React y almacenamiento persistente con LocalStorage.
 
----
-
-## Capturas de pantalla
-
+### Capturas de pantalla
 
 ![Evidencia del funcionamiento](./assets/Evidencia_Funcionamiento.png)
 
-- Pantalla principal
-- Carrito de compras
-- Carrito con productos almacenados en LocalStorage
+La evidencia contempla la pantalla principal, el carrito de compras y productos guardados en LocalStorage.
 
+### Demo
 
-Ejemplo:
+Actualmente el proyecto no cuenta con un despliegue en producción. Si se publica posteriormente, se puede agregar aquí el enlace:
 
-- Pantalla principal
-- Carrito de compras
-- Carrito con productos almacenados en LocalStorage
-
----
-
-## Demo
-
-Actualmente el proyecto no cuenta con un despliegue en producción.
-
-En caso de publicarse posteriormente, colocar aquí el enlace.
-
-Ejemplo:
-
-```
+```text
 https://mi-proyecto.vercel.app
 ```
 
 ---
 
-# Ficha Técnica y Tecnologías
+## Ficha técnica
 
-## Lenguajes utilizados
+### Lenguajes y versiones
 
 | Tecnología | Versión |
-|------------|----------|
+| --- | --- |
 | TypeScript | 6.0.2 |
 | React | 19.2.8 |
 | React DOM | 19.2.8 |
@@ -73,210 +69,103 @@ https://mi-proyecto.vercel.app
 
 ### Nivel de tipado
 
-El proyecto utiliza **TypeScript**, lo que permite definir tipos para:
+El proyecto utiliza **TypeScript** para definir tipos de props, objetos, arreglos, funciones y datos del carrito. Esto reduce errores durante el desarrollo y mejora el autocompletado del editor.
 
-- Props
-- Objetos
-- Arreglos
-- Funciones
-- Datos del carrito
+### Framework, librerías y dependencias
 
-Esto reduce errores durante el desarrollo y mejora el autocompletado del editor.
+Se utilizan React y React DOM. No se incorporaron librerías externas para el manejo de estado, como Redux o Zustand, porque el tamaño del proyecto no lo requiere. Los estilos se implementaron con archivos CSS incluidos en el proyecto.
 
----
+| Producción | Desarrollo |
+| --- | --- |
+| React | TypeScript |
+| React DOM | Vite |
+|  | ESLint |
+|  | `@vitejs/plugin-react` |
+|  | `typescript-eslint` |
+|  | `eslint-plugin-react-hooks` |
 
-## Framework y Librerías
+Estas herramientas permiten desarrollar una aplicación moderna, rápida y con validación de buenas prácticas.
 
-- React 19
-- React DOM
+### Entorno de desarrollo
 
-No se utilizaron librerías externas para manejo de estado como Redux o Zustand debido a que el tamaño del proyecto no lo requiere.
-
-Los estilos fueron implementados utilizando archivos CSS incluidos en el proyecto.
-
----
-
-## Entorno de desarrollo
-
-### Bundler
-
-Vite 8
-
-### Gestor de paquetes
-
-npm
+| Herramienta | Uso |
+| --- | --- |
+| Vite 8 | Bundler y servidor de desarrollo |
+| npm | Gestor de paquetes |
 
 ---
 
-## Dependencias principales
+## Arquitectura
 
-Producción
+La aplicación sigue una arquitectura de componentes reutilizables. La lógica de negocio se separa de la interfaz gráfica mediante un **Custom Hook**, lo que facilita el mantenimiento y la reutilización de la lógica del carrito.
 
-- React
-- React DOM
+### Organización general
 
-Desarrollo
-
-- TypeScript
-- Vite
-- ESLint
-- @vitejs/plugin-react
-- typescript-eslint
-- eslint-plugin-react-hooks
-
-Estas herramientas permiten desarrollar una aplicación moderna, rápida y con validación de buenas prácticas durante el desarrollo.
-
----
-
-# Arquitectura e Implementación en React
-
-La aplicación sigue una arquitectura basada en componentes reutilizables donde la lógica de negocio se encuentra separada de la interfaz gráfica mediante un **Custom Hook**.
-
-Esta separación facilita el mantenimiento y permite reutilizar la lógica del carrito sin duplicar código.
-
-## Organización general
-
-```
+```text
 src/
-
-components/
-    Guitar.tsx
-    Header.tsx
-
-hooks/
-    useCart.ts
-
-data/
-    db.ts
-
-App.tsx
-main.tsx
-types.d.ts
+├── components/
+│   ├── Guitar.tsx
+│   └── Header.tsx
+├── hooks/
+│   └── useCart.ts
+├── data/
+│   └── db.ts
+├── App.tsx
+├── main.tsx
+└── types.d.ts
 ```
 
 ### Responsabilidad de cada carpeta
 
-**components**
-
-Contiene los componentes visuales de la aplicación.
-
-**hooks**
-
-Contiene la lógica reutilizable del carrito de compras.
-
-**data**
-
-Contiene la base de datos local con la información de las guitarras.
-
-**types.d.ts**
-
-Define todos los tipos utilizados dentro del proyecto.
+| Ruta | Responsabilidad |
+| --- | --- |
+| `components` | Componentes visuales de la aplicación. |
+| `hooks` | Lógica reutilizable del carrito de compras. |
+| `data` | Datos locales con la información de las guitarras. |
+| `types.d.ts` | Tipos utilizados dentro del proyecto. |
 
 ---
 
-## Hooks Nativos utilizados
+## Hooks nativos
 
-### useState
-
-Se utiliza para administrar los estados locales de la aplicación.
-
-Principalmente controla:
-
-- Carrito de compras
-- Cantidad de productos
-- Actualización del estado del carrito
-
-El uso de useState permite que React vuelva a renderizar la interfaz automáticamente cuando cambia la información del carrito.
+| Hook | Uso en el proyecto |
+| --- | --- |
+| `useState` | Administra el carrito, las cantidades y las actualizaciones del estado. React vuelve a renderizar la interfaz cuando cambia la información. |
+| `useEffect` | Sincroniza el carrito con LocalStorage cuando cambia, para conservar los productos entre visitas. |
+| `useMemo` | Optimiza cálculos derivados del carrito, como verificar si está vacío y calcular el total. |
+| `useRef` | No fue necesario; la aplicación no manipula directamente elementos del DOM. |
+| `useCallback` | No fue necesario; las funciones no generan problemas de renderizado que justifiquen su uso. |
+| `useContext` | No se utilizó; el estado se administra mediante un Custom Hook. |
+| `useReducer` | No fue necesario porque la lógica puede manejarse correctamente con `useState`. |
 
 ---
 
-### useEffect
+## Custom Hook: `useCart`
 
-Se utiliza para sincronizar el carrito con LocalStorage.
-
-Cada vez que el carrito cambia, la información se guarda automáticamente en el navegador.
-
-Esto permite que el usuario no pierda sus productos aunque cierre la página.
-
----
-
-### useMemo
-
-Se utiliza para optimizar cálculos derivados del carrito.
-
-Por ejemplo:
-
-- Saber si el carrito está vacío.
-- Calcular el precio total.
-
-Con useMemo estos cálculos solamente se ejecutan cuando realmente cambia el carrito, evitando renderizados innecesarios.
-
----
-
-### useRef
-
-No fue necesario utilizarlo debido a que la aplicación no manipula directamente elementos del DOM.
-
----
-
-### useCallback
-
-No fue necesario implementarlo ya que las funciones del proyecto no generan problemas de renderizado que justifiquen su uso.
-
----
-
-### useContext
-
-No fue utilizado.
-
-El tamaño del proyecto permite administrar el estado únicamente mediante un Custom Hook.
-
----
-
-### useReducer
-
-No fue necesario debido a que la lógica del carrito puede manejarse correctamente utilizando useState.
-
----
-
-# Custom Hooks
-
-## useCart
-
-El proyecto implementa un Hook personalizado llamado:
-
-```
-useCart()
-```
-
-Su objetivo principal es encapsular toda la lógica relacionada con el carrito de compras.
-
-De esta manera los componentes únicamente consumen información sin preocuparse por la lógica interna.
+El Hook personalizado `useCart()` encapsula la lógica relacionada con el carrito. Así, los componentes consumen la información sin depender de los detalles de su implementación.
 
 ### Responsabilidades
 
-- Agregar productos.
-- Eliminar productos.
-- Incrementar cantidades.
-- Disminuir cantidades.
-- Vaciar carrito.
-- Calcular total.
+- Agregar y eliminar productos.
+- Incrementar y disminuir cantidades.
+- Vaciar el carrito y calcular el total.
 - Verificar si el carrito está vacío.
-- Recuperar datos desde LocalStorage.
-- Guardar automáticamente el carrito en LocalStorage.
+- Recuperar los datos desde LocalStorage y guardarlos automáticamente.
 
 ### Valores que expone
 
 Entre los principales valores retornados por el Hook se encuentran:
 
-- cart
-- data
-- addToCart()
-- increaseQuantity()
-- decreaseQuantity()
-- removeFromCart()
-- clearCart()
-- isEmpty
-- cartTotal
+| Estado o función | Descripción |
+| --- | --- |
+| `cart` | Productos y cantidades del carrito. |
+| `data` | Datos del catálogo. |
+| `addToCart()` | Agrega un producto. |
+| `increaseQuantity()` | Incrementa la cantidad de un producto. |
+| `decreaseQuantity()` | Disminuye la cantidad de un producto. |
+| `removeFromCart()` | Elimina un producto. |
+| `clearCart()` | Vacía el carrito. |
+| `isEmpty` | Indica si el carrito está vacío. |
+| `cartTotal` | Total de la compra. |
 
-Esta arquitectura permite mantener separados los componentes visuales de la lógica de negocio.
+Esta arquitectura mantiene separados los componentes visuales y la lógica de negocio.
