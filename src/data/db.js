@@ -1,3 +1,6 @@
+
+
+// array de guitarras se define asi por que no solo es 1 son varios 
 export const db = [
     {
         id: 1,
@@ -83,4 +86,4 @@ export const db = [
         description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
         price: 379,
     },
-  ]
+]
